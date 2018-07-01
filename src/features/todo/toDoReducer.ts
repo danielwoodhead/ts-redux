@@ -1,7 +1,7 @@
-import { LOAD_TODOS, ToDoAction } from './toDoActions';
+import * as actions from './toDoActions';
 import { ITodoState } from './types';
 
-export function todos(state: ITodoState, action: ToDoAction): ITodoState {
+export function todos(state: ITodoState, action: actions.ToDoAction): ITodoState {
   if (state === undefined) {
     state = {
       todos: []
@@ -9,9 +9,16 @@ export function todos(state: ITodoState, action: ToDoAction): ITodoState {
   }
 
   switch (action.type) {
-    case LOAD_TODOS:
-      return { ...state, todos: action.todos };
-      
+    case actions.LOAD_TODOS:
+      return { 
+        todos: action.todos 
+      };
+    
+    case actions.ADD_NEW_TODO:
+      return { 
+        todos: [ ...state.todos, action.todo ]
+      };
+
     default:
       return state;
   }

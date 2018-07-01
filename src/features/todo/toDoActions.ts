@@ -1,3 +1,5 @@
+import { ITodo } from "./types";
+
 export const LOAD_TODOS = 'LOAD_TODOS';
 export type LOAD_TODOS = typeof LOAD_TODOS;
 
@@ -6,24 +8,26 @@ export type ADD_NEW_TODO = typeof ADD_NEW_TODO;
 
 export interface ILoadToDos {
     type: LOAD_TODOS;
-    todos: string[];
+    todos: ITodo[];
 }
 
 export interface IAddNewTodo {
     type: ADD_NEW_TODO;
+    todo: ITodo;
 }
 
 export type ToDoAction = ILoadToDos | IAddNewTodo;
 
-export function loadToDos(todos: string[]): ILoadToDos {
+export function loadToDos(todos: ITodo[]): ILoadToDos {
     return {
         type: LOAD_TODOS,
         todos
     }
 }
 
-export function addNewTodo(): IAddNewTodo {
+export function addNewTodo(todo: ITodo): IAddNewTodo {
     return {
-        type: ADD_NEW_TODO
+        type: ADD_NEW_TODO,
+        todo
     }
 }
