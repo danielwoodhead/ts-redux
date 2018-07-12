@@ -14,8 +14,8 @@ const store = configureStore({
         enthusiasmLevel: 1,
         languageName: 'TypeScript'
     },
-    todoState: {
-        todos: []
+    toDoState: {
+        toDos: []
     }
 });
 

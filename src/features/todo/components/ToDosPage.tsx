@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { ITodo } from '../types';
+import { IToDo } from '../types';
 import { ToDoList } from './ToDoList';
 
 interface IProps
 {
-    todos: ITodo[];
+    toDos: IToDo[];
 }
 
 export class ToDosPage extends React.Component<IProps, {}> {
@@ -12,7 +12,7 @@ export class ToDosPage extends React.Component<IProps, {}> {
         return (
             <div>
                 <h2>ToDos</h2>
-                <ToDoList todos={this.props.todos}/>
+                <ToDoList toDos={this.props.toDos}/>
             </div>
         );
     }

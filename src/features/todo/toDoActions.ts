@@ -1,33 +1,33 @@
-import { ITodo } from "./types";
+import { IToDo } from "./types";
 
 export const LOAD_TODOS = 'LOAD_TODOS';
 export type LOAD_TODOS = typeof LOAD_TODOS;
 
-export const ADD_NEW_TODO = 'ADD_NEW_TODO';
-export type ADD_NEW_TODO = typeof ADD_NEW_TODO;
+export const SAVE_TODO = 'SAVE_TODO';
+export type SAVE_TODO = typeof SAVE_TODO;
 
 export interface ILoadToDos {
     type: LOAD_TODOS;
-    todos: ITodo[];
+    toDos: IToDo[];
 }
 
-export interface IAddNewTodo {
-    type: ADD_NEW_TODO;
-    todo: ITodo;
+export interface ISaveToDo {
+    type: SAVE_TODO;
+    toDo: IToDo;
 }
 
-export type ToDoAction = ILoadToDos | IAddNewTodo;
+export type ToDoAction = ILoadToDos | ISaveToDo;
 
-export function loadToDos(todos: ITodo[]): ILoadToDos {
+export function loadToDos(toDos: IToDo[]): ILoadToDos {
     return {
         type: LOAD_TODOS,
-        todos
+        toDos
     }
 }
 
-export function addNewTodo(todo: ITodo): IAddNewTodo {
+export function saveToDo(toDo: IToDo) : ISaveToDo {
     return {
-        type: ADD_NEW_TODO,
-        todo
+        type: SAVE_TODO,
+        toDo
     }
 }

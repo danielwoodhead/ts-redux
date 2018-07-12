@@ -1,25 +1,28 @@
 import * as actions from './toDoActions';
-import { ITodoState } from './types';
+import { IToDoState } from './types';
 
-export function todos(state: ITodoState, action: actions.ToDoAction): ITodoState {
-  if (state === undefined) {
-    state = {
-      todos: []
-    };
-  }
+export function toDos(state: IToDoState, action: actions.ToDoAction): IToDoState {
+    if (state === undefined) {
+        state = {
+            toDos: []
+        };
+    }
 
-  switch (action.type) {
-    case actions.LOAD_TODOS:
-      return { 
-        todos: action.todos 
-      };
-    
-    case actions.ADD_NEW_TODO:
-      return { 
-        todos: [ ...state.todos, action.todo ]
-      };
+    switch (action.type) {
+        case actions.LOAD_TODOS:
+        return { 
+            toDos: action.toDos 
+        };
+
+    case actions.SAVE_TODO:
+        return {
+            toDos: [
+                ...state.toDos.filter(toDo => toDo.id !== action.toDo.id),
+                Object.assign({}, action.toDo)
+            ]
+        };
 
     default:
-      return state;
-  }
+        return state;
+    }
 }

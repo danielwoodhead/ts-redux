@@ -1,28 +1,29 @@
-import { ITodo } from "./types";
+import { IToDo } from "./types";
 
-const todos: ITodo[] = [
+const toDos: IToDo[] = [
     { id: "3", description: "test3" },
     { id: "4", description: "test4" }
 ];
 
-class TodoApi {
-    public static getAllTodos(): Promise<ITodo[]> {
+class ToDoApi {
+    public static getAllTodos(): Promise<IToDo[]> {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(Object.assign([], todos));
+                resolve(Object.assign([], toDos));
             }, 1000);
         });
     }
 
-    public static addNewTodo(todo: ITodo): Promise<ITodo> {
-        todo = Object.assign({}, todo);
+    public static saveToDo(toDo: IToDo): Promise<IToDo> {
+        toDo = Object.assign({}, toDo);
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                todos.push(todo);
-                resolve(todo);
+                const existingToDoIndex = toDos.findIndex(t => t.id === toDo.id);
+                toDos.splice(existingToDoIndex, 1, toDo);
+                resolve(toDo);
             }, 1000);
         });
     }
 }
 
-export default TodoApi;
+export default ToDoApi;

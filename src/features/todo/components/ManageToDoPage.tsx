@@ -1,36 +1,59 @@
 import * as React from 'react';
+import { Redirect } from 'react-router-dom';
 import { ToDoForm } from './ToDoForm';
-import { ITodo } from '../types';
+import { IToDo } from '../types';
 
 interface IProps {
-    todo: ITodo;
+    toDo: IToDo;
+    saveToDo: (toDo: IToDo) => Promise<any>;
 }
 
 interface IState {
-    todo: ITodo;
+    toDo: IToDo;
+    redirect: boolean;
 }
 
 export class ManageToDoPage extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            todo: Object.assign({}, props.todo)
+            toDo: Object.assign({}, props.toDo),
+            redirect: false
         };
+
+        this.updateToDo = this.updateToDo.bind(this);
+        this.saveToDo = this.saveToDo.bind(this);
+        this.redirect = this.redirect.bind(this);
     }
 
     public render() {
+        if (this.state.redirect) {
+            return <Redirect to="/" />;
+        }
+
         return (
             <ToDoForm 
-                todo={this.state.todo} 
-                onToDoChanged={this.updateToDo} />
+                toDo={this.state.toDo} 
+                onToDoChanged={this.updateToDo}
+                onSave={this.saveToDo} />
         );
     }
 
-    private updateToDo = (e: React.FormEvent<HTMLInputElement>): void => {
+    private updateToDo(e: React.FormEvent<HTMLInputElement>): void {
         const field = e.currentTarget.name;
-        const toDo = Object.assign({}, this.state.todo);
+        const toDo = Object.assign({}, this.state.toDo);
         toDo[field] = e.currentTarget.value;
 
-        return this.setState({todo: toDo});
+        return this.setState({toDo});
+    }
+
+    private saveToDo(e: React.FormEvent<HTMLInputElement>): void {
+        e.preventDefault();
+        this.props.saveToDo(this.state.toDo)
+            .then(() => this.redirect());
+    }
+
+    private redirect(): void {
+        this.setState({ redirect: true });
     }
 }

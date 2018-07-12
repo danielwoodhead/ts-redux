@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { IStoreState } from '../../../store';
 import { ToDosPage } from './ToDosPage';
 
-export function mapStateToProps({ todoState }: IStoreState) {
+export function mapStateToProps({ toDoState }: IStoreState) {
     return {
-        todos: todoState.todos
+        toDos: toDoState.toDos
     }
 }
 

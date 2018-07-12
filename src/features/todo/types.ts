@@ -1,8 +1,8 @@
-export interface ITodoState {
-    todos: ITodo[];
+export interface IToDoState {
+    toDos: IToDo[];
 }
 
-export interface ITodo {
+export interface IToDo {
     id: string;
     description: string;
 }

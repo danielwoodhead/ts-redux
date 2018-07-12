@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { ITodo } from '../types';
+import { IToDo } from '../types';
 import { ToDoRow } from './ToDoRow';
 
 interface IProps
 {
-    todos: ITodo[];
+    toDos: IToDo[];
 }
 
-export const ToDoList: React.SFC<IProps> = ({todos}) => {
+export const ToDoList: React.SFC<IProps> = ({toDos}) => {
     return (
         <table>
             <thead>
@@ -17,7 +17,7 @@ export const ToDoList: React.SFC<IProps> = ({todos}) => {
                 </tr>
             </thead>
             <tbody>
-                {todos.map(todo => <ToDoRow key={todo.id} todo={todo}/>)}
+                {toDos.map(toDo => <ToDoRow key={toDo.id} toDo={toDo}/>)}
             </tbody>
         </table>
     );
