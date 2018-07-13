@@ -6,7 +6,6 @@ import { IToDo } from '../types';
 import ToDoApi from '../toDoApi';
 
 export function mapStateToProps({ toDoState }: IStoreState, ownProps: any) {
-    debugger;
     const toDoId = ownProps.match.params.id;
     
     let toDo: IToDo | null = null;

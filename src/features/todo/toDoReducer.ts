@@ -10,19 +10,19 @@ export function toDos(state: IToDoState, action: actions.ToDoAction): IToDoState
 
     switch (action.type) {
         case actions.LOAD_TODOS:
-        return { 
-            toDos: action.toDos 
-        };
+            return { 
+                toDos: action.toDos 
+            };
 
-    case actions.SAVE_TODO:
-        return {
-            toDos: [
-                ...state.toDos.filter(toDo => toDo.id !== action.toDo.id),
-                Object.assign({}, action.toDo)
-            ]
-        };
+        case actions.SAVE_TODO:
+            return {
+                toDos: [
+                    ...state.toDos.filter(toDo => toDo.id !== action.toDo.id),
+                    Object.assign({}, action.toDo)
+                ]
+            };
 
-    default:
-        return state;
+        default:
+            return state;
     }
 }

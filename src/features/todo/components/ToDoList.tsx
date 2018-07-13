@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Table } from 'react-bootstrap';
 import { IToDo } from '../types';
 import { ToDoRow } from './ToDoRow';
 
@@ -9,7 +10,7 @@ interface IProps
 
 export const ToDoList: React.SFC<IProps> = ({toDos}) => {
     return (
-        <table>
+        <Table striped={true} bordered={true} condensed={true} hover={true}>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -19,6 +20,6 @@ export const ToDoList: React.SFC<IProps> = ({toDos}) => {
             <tbody>
                 {toDos.map(toDo => <ToDoRow key={toDo.id} toDo={toDo}/>)}
             </tbody>
-        </table>
+        </Table>
     );
 }

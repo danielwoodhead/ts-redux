@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './Hello.css';
+import './hello.css';
 
 export interface IProps {
     name: string;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormControlProps } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { ToDoForm } from './ToDoForm';
 import { IToDo } from '../types';
@@ -39,16 +40,15 @@ export class ManageToDoPage extends React.Component<IProps, IState> {
         );
     }
 
-    private updateToDo(e: React.FormEvent<HTMLInputElement>): void {
-        const field = e.currentTarget.name;
+    private updateToDo(e: React.FormEvent<FormControlProps>): void {
+        const field = e.currentTarget.name!;
         const toDo = Object.assign({}, this.state.toDo);
         toDo[field] = e.currentTarget.value;
 
         return this.setState({toDo});
     }
 
-    private saveToDo(e: React.FormEvent<HTMLInputElement>): void {
-        e.preventDefault();
+    private saveToDo(): void {
         this.props.saveToDo(this.state.toDo)
             .then(() => this.redirect());
     }
