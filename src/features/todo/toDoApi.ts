@@ -1,8 +1,9 @@
+import { compareById } from "./functions";
 import { IToDo } from "./types";
 
 const toDos: IToDo[] = [
-    { id: "3", description: "test3" },
-    { id: "4", description: "test4" }
+    { id: 1, description: "test1" },
+    { id: 2, description: "test2" }
 ];
 
 class ToDoApi {
@@ -18,8 +19,13 @@ class ToDoApi {
         toDo = Object.assign({}, toDo);
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                const existingToDoIndex = toDos.findIndex(t => t.id === toDo.id);
-                toDos.splice(existingToDoIndex, 1, toDo);
+                if (toDo.id) {
+                    const existingToDoIndex = toDos.findIndex(t => t.id === toDo.id);
+                    toDos.splice(existingToDoIndex, 1, toDo);
+                } else {
+                    toDo.id = toDos.sort(compareById)[toDos.length - 1].id + 1;
+                    toDos.push(toDo);
+                }
                 resolve(toDo);
             }, 1000);
         });

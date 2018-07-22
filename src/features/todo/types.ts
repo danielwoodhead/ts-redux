@@ -3,6 +3,6 @@ export interface IToDoState {
 }
 
 export interface IToDo {
-    id: string;
+    id: number;
     description: string;
 }

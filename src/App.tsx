@@ -11,9 +11,12 @@ class App extends React.Component {
       <div>
         <Header />
 
-        <Route exact={true} path="/" component={ToDosContainer}/>
-        <Route path="/todo/:id" component={ManageToDoContainer}/>
-        <Route path="/hello" component={HelloContainer}/>
+        <div className="container-fluid">
+          <Route path="/" component={ToDosContainer} exact={true}/>
+          <Route path="/todo/:id" component={ManageToDoContainer}/>
+          <Route path="/todo" component={ManageToDoContainer} exact={true}/>
+          <Route path="/hello" component={HelloContainer}/>
+        </div>
       </div>
     );
   }

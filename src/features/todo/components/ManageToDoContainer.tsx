@@ -11,7 +11,7 @@ export function mapStateToProps({ toDoState }: IStoreState, ownProps: any) {
     let toDo: IToDo | null = null;
 
     if (toDoId && toDoState.toDos.length > 0) {
-        toDo = getToDoById(toDoState.toDos, toDoId);
+        toDo = getToDoById(toDoState.toDos, Number(toDoId));
     }
 
     if (toDo) {
@@ -27,7 +27,7 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.ToDoAction>) {
     }
 }
     
-function getToDoById(todos: IToDo[], id: string) {
+function getToDoById(todos: IToDo[], id: number) {
     const existingToDo = todos.filter(toDo => toDo.id === id);
 
     if (existingToDo) {

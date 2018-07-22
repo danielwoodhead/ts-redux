@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Table } from 'react-bootstrap';
+import { compareById } from '../functions';
 import { IToDo } from '../types';
 import { ToDoRow } from './ToDoRow';
 
@@ -18,7 +19,8 @@ export const ToDoList: React.SFC<IProps> = ({toDos}) => {
                 </tr>
             </thead>
             <tbody>
-                {toDos.map(toDo => <ToDoRow key={toDo.id} toDo={toDo}/>)}
+                {toDos.sort(compareById)
+                    .map(toDo => <ToDoRow key={toDo.id} toDo={toDo}/>)}
             </tbody>
         </Table>
     );

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { IStoreState } from '../../../store';
 import { ToDosPage } from './ToDosPage';
 
@@ -8,4 +9,4 @@ export function mapStateToProps({ toDoState }: IStoreState) {
     }
 }
 
-export default connect(mapStateToProps)(ToDosPage);
+export default withRouter(connect(mapStateToProps)(ToDosPage));
